@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 using Microsoft.WindowsAzure.MobileServices;
 using Android.App;
 using Android.Content.PM;
@@ -8,11 +9,20 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
+
 namespace lab.Droid
 {
     [Activity(Label = "lab", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        public class TodoItem
+        {
+            public string Id { get; set; }
+            public string Text { get; set; }
+            CurrentPlatform.Init();
+TodoItem item = new TodoItem { Text = "Awesome item" };
+            await MobileService.GetTable<TodoItem>().InsertAsync(item);
+        }
         public static MobileServiceClient MobileService =
     new MobileServiceClient("https://gooslab.azurewebsites.net");
         protected override void OnCreate(Bundle savedInstanceState)

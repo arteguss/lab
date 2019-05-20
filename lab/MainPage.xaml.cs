@@ -16,6 +16,7 @@ namespace lab
         public MainPage()
         {
             InitializeComponent();
+
         }
     }
 }
